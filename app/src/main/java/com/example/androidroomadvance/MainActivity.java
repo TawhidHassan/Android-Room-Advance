@@ -1,6 +1,7 @@
 package com.example.androidroomadvance;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Database;
 import androidx.room.Room;
 
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.androidroomadvance.Room.DatabaseClient;
 import com.example.androidroomadvance.Room.MyDatabase;
 import com.example.androidroomadvance.Room.Student;
 
@@ -78,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpDB(){
-        myDatabase= Room.databaseBuilder(MainActivity.this, MyDatabase.class,"StudentDB")
-                .allowMainThreadQueries().build();
+        myDatabase= DatabaseClient.databaseClient(this);
     }
 }
