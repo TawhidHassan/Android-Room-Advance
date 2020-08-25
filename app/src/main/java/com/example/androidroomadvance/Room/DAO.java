@@ -2,6 +2,7 @@ package com.example.androidroomadvance.Room;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 @Dao
 public interface DAO {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE) /**Upsert for prevent crush same id insert*/
     public void studentInsertion(Student student);
 
     @Query("Select * from Student")

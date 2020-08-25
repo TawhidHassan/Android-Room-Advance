@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Student student=new Student(firstName.getText().toString(),secondName.getText().toString(),className.getText().toString());
+                Student student=new Student(1,firstName.getText().toString(),secondName.getText().toString(),className.getText().toString());
 
                 myDatabase.dao().studentInsertion(student);
             }

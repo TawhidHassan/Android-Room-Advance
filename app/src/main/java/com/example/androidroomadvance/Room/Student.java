@@ -8,14 +8,15 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Student {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey()
     int stuId;
 
     String stuFirstName;
     String stuLastName;
     String stuClass;
 
-    public Student(String stuFirstName, String stuLastName, String stuClass) {
+    public Student(int stuId,String stuFirstName, String stuLastName, String stuClass) {
+        this.stuId = stuId;
         this.stuFirstName = stuFirstName;
         this.stuLastName = stuLastName;
         this.stuClass = stuClass;
