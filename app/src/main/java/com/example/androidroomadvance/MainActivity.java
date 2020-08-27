@@ -14,6 +14,7 @@ import com.example.androidroomadvance.Room.DatabaseClient;
 import com.example.androidroomadvance.Room.MyDatabase;
 import com.example.androidroomadvance.Room.Student;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Student student=new Student(1,firstName.getText().toString(),secondName.getText().toString(),className.getText().toString());
+                Student student=new Student(1,firstName.getText().toString(),secondName.getText().toString(),className.getText().toString(), Calendar.getInstance().getTime());
 
                 myDatabase.dao().studentInsertion(student);
             }
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i=0; i<stuData.size();i++){
 
-                    Toast.makeText(MainActivity.this,stuData.get(i).getStuId() +") "+ stuData.get(i).getStuFirstName() +"-> "+stuData.get(i).getStuClass() , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,stuData.get(i).getStuId() +") "+ stuData.get(i).getStuFirstName() +"-> "+stuData.get(i).getStuClass() +" "+stuData.get(i).getDate(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -2,6 +2,10 @@ package com.example.androidroomadvance.Room;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
+
+import java.util.Date;
 
 /**That class call entity, here we make table ***/
 
@@ -15,11 +19,15 @@ public class Student {
     String stuLastName;
     String stuClass;
 
-    public Student(int stuId,String stuFirstName, String stuLastName, String stuClass) {
+    @TypeConverters({DateTypeConvertor.class})
+    Date date;
+
+    public Student(int stuId,String stuFirstName, String stuLastName, String stuClass,Date date) {
         this.stuId = stuId;
         this.stuFirstName = stuFirstName;
         this.stuLastName = stuLastName;
         this.stuClass = stuClass;
+        this.date = date;
     }
 
     public int getStuId() {
@@ -52,5 +60,13 @@ public class Student {
 
     public void setStuClass(String stuClass) {
         this.stuClass = stuClass;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
