@@ -42,6 +42,30 @@
             android:gravity="center"
             android:layout_gravity="center"/>
 
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/address"
+            android:hint="Home Address"
+            />
+
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Home Phone" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="insert data "
+            android:id="@+id/details"
+            android:gravity="center"
+            android:layout_gravity="center"/>
+
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,47 +74,6 @@
             android:gravity="center"
             android:layout_gravity="center"/>
 
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/updatename"
-            android:hint="Update Name"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/updateid"
-            android:hint="Update Id"
-            />
-
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Update"
-            android:id="@+id/btnUpdate"
-            android:gravity="center"
-            android:layout_gravity="center"/>
-
-
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/deleteID"
-            android:hint="Delete ID"
-            />
-
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delete"
-            android:id="@+id/btnDelete"
-            android:gravity="center"
-            android:layout_gravity="center"/>
 
     </LinearLayout>
 

@@ -1,8 +1,6 @@
 package com.example.androidroomadvance;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Database;
-import androidx.room.Room;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,15 +10,17 @@ import android.widget.Toast;
 
 import com.example.androidroomadvance.Room.DatabaseClient;
 import com.example.androidroomadvance.Room.MyDatabase;
-import com.example.androidroomadvance.Room.Student;
+import com.example.androidroomadvance.Room.Table.Student;
+import com.example.androidroomadvance.Room.Table.StudentDeatils;
 
 import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    EditText firstName , secondName, className , updatename , updateid , deleteID;
-    Button insert , read , btnUpdate , btnDelete;
+    EditText firstName , secondName, className , address , phone ;
+    Button insert , read , insertDetails;
     MyDatabase myDatabase;
+    long stuId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,22 +29,19 @@ public class MainActivity extends AppCompatActivity {
         firstName = (EditText) findViewById(R.id.firstName);
         secondName = (EditText) findViewById(R.id.secondName);
         className = (EditText) findViewById(R.id.className);
-        updatename = (EditText) findViewById(R.id.updatename);
-        updateid = (EditText) findViewById(R.id.updateid);
-        deleteID = (EditText) findViewById(R.id.deleteID);
+        address = (EditText) findViewById(R.id.address);
+        phone = (EditText) findViewById(R.id.phone);
         insert = (Button) findViewById(R.id.insert);
         read = (Button) findViewById(R.id.read);
-        btnUpdate = (Button) findViewById(R.id.btnUpdate);
-        btnDelete = (Button) findViewById(R.id.btnDelete);
+        insertDetails = (Button) findViewById(R.id.details);
         setUpDB();
 
 
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Student student=new Student(1,firstName.getText().toString(),secondName.getText().toString(),className.getText().toString(), Calendar.getInstance().getTime());
-
-                myDatabase.dao().studentInsertion(student);
+                Student student=new Student(firstName.getText().toString(),secondName.getText().toString(),className.getText().toString(), Calendar.getInstance().getTime());
+               stuId=  myDatabase.dao().studentInsertion(student);
             }
         });
 
@@ -56,23 +53,22 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i=0; i<stuData.size();i++){
 
-                    Toast.makeText(MainActivity.this,stuData.get(i).getStuId() +") "+ stuData.get(i).getStuFirstName() +"-> "+stuData.get(i).getStuClass() +" "+stuData.get(i).getDate(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,stuData.get(i).getStuId() +") "+ stuData.get(i).getStuFirstName() +"-> "+stuData.get(i).getStuClass() +" date: "+stuData.get(i).getDate()+"\nHome:"+myDatabase.dao().getData().getStudentDeatils().get(i).getHomeAddress()+"\nphone:"+myDatabase.dao().getData().getStudentDeatils().get(i).getPhoneNumber(), Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         });
 
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                myDatabase.dao().updateStudent(updatename.getText().toString() , Integer.parseInt(updateid.getText().toString()));
-            }
-        });
-
-        btnDelete.setOnClickListener(new View.OnClickListener() {
+        insertDetails.setOnClickListener(new View.OnClickListener() {//use it for one to one relationship
             @Override
             public void onClick(View view) {
 
-                myDatabase.dao().deleteStu(Integer.parseInt(deleteID.getText().toString()));
+                StudentDeatils studentDeatils=new StudentDeatils((int) stuId,address.getText().toString(),phone.getText().toString());
+
+                myDatabase.dao().studentDetailsInsertion(studentDeatils);
+
+
             }
         });
 
