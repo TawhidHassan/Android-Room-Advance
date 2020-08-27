@@ -12,6 +12,7 @@ import com.example.androidroomadvance.Room.DatabaseClient;
 import com.example.androidroomadvance.Room.MyDatabase;
 import com.example.androidroomadvance.Room.Table.Student;
 import com.example.androidroomadvance.Room.Table.StudentDeatils;
+import com.example.androidroomadvance.Room.Table.StudentWithDetails;
 
 import java.util.Calendar;
 import java.util.List;
@@ -50,10 +51,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 List<Student> stuData= myDatabase.dao().getStudent();
+                List<StudentWithDetails> studentDeatils= myDatabase.dao().getData();
 
-                for (int i=0; i<stuData.size();i++){
+                for (int i=0; i<studentDeatils.size();i++){
 
-                    Toast.makeText(MainActivity.this,stuData.get(i).getStuId() +") "+ stuData.get(i).getStuFirstName() +"-> "+stuData.get(i).getStuClass() +" date: "+stuData.get(i).getDate()+"\nHome:"+myDatabase.dao().getData().getStudentDeatils().get(i).getHomeAddress()+"\nphone:"+myDatabase.dao().getData().getStudentDeatils().get(i).getPhoneNumber(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,stuData.get(i).getStuId() +") "+ stuData.get(i).getStuFirstName() +"-> "+stuData.get(i).getStuClass() +" date: "+stuData.get(i).getDate(), Toast.LENGTH_SHORT).show();
+                    for (int j=0; j<studentDeatils.get(i).getStudentDeatils().size(); j++){
+                        Toast.makeText(MainActivity.this, "Home:"+studentDeatils.get(i).getStudentDeatils().get(j).getHomeAddress()+"\nphone:"+studentDeatils.get(i).getStudentDeatils().get(j).getPhoneNumber(), Toast.LENGTH_SHORT).show();
+                    }
                 }
 
 

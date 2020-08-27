@@ -23,7 +23,7 @@ public interface DAO {
     public void studentDetailsInsertion(StudentDeatils studentDeatils); //for relation ship table
 
     @Query("Select * from Student")
-    public StudentWithDetails getData();
+    public List<StudentWithDetails> getData();
 
     @Query("Select * from Student")
     List<Student> getStudent();
