@@ -3,6 +3,7 @@ package com.example.androidroomadvance.Room;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
+import com.example.androidroomadvance.Room.Table.Course;
 import com.example.androidroomadvance.Room.Table.Student;
 import com.example.androidroomadvance.Room.Table.StudentDeatils;
 
@@ -10,7 +11,7 @@ import com.example.androidroomadvance.Room.Table.StudentDeatils;
 
 
 
-@Database(entities = {Student.class, StudentDeatils.class},version = 1,exportSchema = false)
+@Database(entities = {Student.class, StudentDeatils.class, Course.class},version = 1,exportSchema = false)
 public abstract class MyDatabase extends RoomDatabase {
 
     public abstract DAO dao();

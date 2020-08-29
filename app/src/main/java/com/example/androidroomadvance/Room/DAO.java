@@ -5,6 +5,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
+import com.example.androidroomadvance.Room.Table.Course;
 import com.example.androidroomadvance.Room.Table.Student;
 import com.example.androidroomadvance.Room.Table.StudentDeatils;
 import com.example.androidroomadvance.Room.Table.StudentWithDetails;
@@ -22,8 +23,14 @@ public interface DAO {
     @Insert
     public void studentDetailsInsertion(StudentDeatils studentDeatils); //for relation ship table
 
+    @Insert
+    public void corseInsertion(Course course);
+
+
     @Query("Select * from Student")
-    public List<StudentWithDetails> getData();
+    public List<StudentWithDetails> getData();//get data from one to one relationship
+
+
 
     @Query("Select * from Student")
     List<Student> getStudent();
